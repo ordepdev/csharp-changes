@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace SimpleDataTypes.csharp1
 {
@@ -33,6 +34,19 @@ namespace SimpleDataTypes.csharp1
             ArrayList products = Product.GetSampleProducts();
             products.Sort(new ProductNameComparer());
             return products;
+        }
+
+        // Nested loop, testing and printing
+        public void QueryProducts()
+        {
+            ArrayList products = Product.GetSampleProducts();
+            foreach (Product product in products)
+            {
+                if (product.price > 1m)
+                {
+                    Console.WriteLine(product);
+                }
+            }
         }
 
         public override string ToString()

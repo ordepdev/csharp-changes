@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleDataTypes.csharp2
 {
@@ -55,6 +56,28 @@ namespace SimpleDataTypes.csharp2
             });
 
             return products;
+        }
+
+        // separating testing from printing using delegates
+        public void QueryProducts()
+        {
+            List<Product> products = Product.GetSampleProducts();
+
+            // anonymous method
+            Predicate<Product> match = delegate(Product p) { return p.Price > 1m; };
+            List<Product> matches = products.FindAll(match);
+
+            // method group conversions
+            Action<Product> print = Console.WriteLine;
+            matches.ForEach(print);
+        }
+
+        public void QueryProductsInline()
+        {
+            List<Product> products = Product.GetSampleProducts();
+
+            products.FindAll(delegate(Product p) { return p.Price > 1m; })
+                .ForEach(Console.WriteLine);
         }
 
         public override string ToString()

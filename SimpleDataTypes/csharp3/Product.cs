@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleDataTypes.csharp3
@@ -48,6 +49,17 @@ namespace SimpleDataTypes.csharp3
 
             // with .OrderBy we keep the products list unsorted
             return products.OrderBy(x => x.Name).ToList();
+        }
+
+        // testing with lambda expression
+        public void QueryProducts()
+        {
+            List<Product> products = Product.GetSampleProducts();
+
+            foreach (Product product in products.Where(p => p.Price > 1m))
+            {
+                Console.WriteLine(product);
+            }
         }
 
         public override string ToString()
